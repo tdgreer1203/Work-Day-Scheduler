@@ -76,10 +76,25 @@ $(".container").on("click", "div.saveBtn", function() {
     saveEvents();
 });
 
-setInterval(function() {
+//Created function for updating page formatting. 
+function updateTaskStatus() {
     $("div.description").each(function() {
-        var eventTime = $(this).parent().find("div.hour").text();
+        var currentTime = moment().hour();
+        var eventTime = moment($(this).parent().find("div.hour").text(), ['hA']).format("H");
+
+        if(eventTime < currentTime) {
+            $(this).addClass('past');
+        } else if (eventTime == currentTime) {
+            $(this).addClass('present');
+        } else {
+            $(this).addClass('future');
+        }
     });
-}, 30000);
+}
+
+setInterval(function() {
+    updateTaskStatus();
+}, (1000 * 60) * 5);
 
 createDay();
+updateTaskStatus();
