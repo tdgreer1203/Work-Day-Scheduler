@@ -34,6 +34,7 @@ $(".container").on("click", "div.description", function(event) {
     textInput.trigger("focus");
 });
 
+//Updates both UI and eventsArray when user is done editing event.
 $(".container").on("blur", "textarea", function(event) {
     var text = $(this).val().trim();
     var eventTime = $(this).parent().find("div.hour").text();
