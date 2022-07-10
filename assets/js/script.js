@@ -4,7 +4,7 @@ var eventsArray = [];
 $('#currentDay').text(moment().format('dddd, MMMM Do'));
 
 //This is just the funciton to save the tasks. 
-function saveTasks() {
+function saveEvents() {
     localStorage.setItem("events", JSON.stringify(eventsArray));
 }
 
@@ -26,13 +26,31 @@ function createDay() {
 };
 
 //Replaces the actual description area with a text area field to add/update an event
-$("div.description").on("click", function(event) {
-    console.log(event);
+$(".container").on("click", "div.description", function(event) {
     var text = $(this).text().trim();
-    var textInput = $("<textarea>").val(text);
+    var textInput = $("<textarea>").addClass('col-12 col-md-10').val(text);
 
     $(this).replaceWith(textInput);
     textInput.trigger("focus");
+});
+
+$(".container").on("blur", "textarea", function(event) {
+    var text = $(this).val().trim();
+    var eventTime = $(this).parent().find("div.hour").text();
+    var descriptionArea = $("<div>").addClass("description col-12 col-md-10 past").text(text);
+    var position = $(this).closest(".row").index();
+
+    if(!text) {
+        eventsArray.splice(position, 1);
+    } else {
+        var event = {
+            time: eventTime,
+            text: text
+        }
+        eventsArray.splice(position, 1, event);
+    }
+
+    $(this).replaceWith(descriptionArea);
 });
 
 createDay();
