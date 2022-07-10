@@ -12,7 +12,11 @@ To learn how to read documentation for third-party APIs, and use them successful
 
 ## Website
 
-[(https://tdgreer1203.github.io/Work-Day-Scheduler/]
+https://tdgreer1203.github.io/Work-Day-Scheduler/
+
+## Screenshot
+
+
 
 ## Contribution
 
