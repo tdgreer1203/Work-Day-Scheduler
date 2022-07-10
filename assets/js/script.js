@@ -16,14 +16,14 @@ function createDay() {
 
     for(var i = 0; i < 10; i++) {
         var row = $("<div>").addClass("row");
-        var timeCol = $("<div>").addClass("col-1 hour").text(moment().hours(8).add(i, 'hours').format('hA'));
-        var descriptionCol = $("<div>").addClass("description col-10 past");
-        var saveCol = $("<div>").addClass("saveBtn col-1").append("<span class='oi oi-file'></span>");
+        var timeCol = $("<div>").addClass("col-12 col-md-1 hour").text(moment().hours(8).add(i, 'hours').format('hA'));
+        var descriptionCol = $("<div>").addClass("description col-12 col-md-10 past");
+        var saveCol = $("<div>").addClass("saveBtn col-12 col-md-1").append("<span class='oi oi-file'></span>");
 
         row.append(timeCol, descriptionCol, saveCol);
         container.append(row);
     }
-}
+};
 
 //Replaces the actual description area with a text area field to add/update an event
 $("div.description").on("click", function(event) {
