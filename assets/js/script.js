@@ -54,4 +54,10 @@ $(".container").on("blur", "textarea", function(event) {
     $(this).replaceWith(descriptionArea);
 });
 
+//Call saveEvents function when save button is pressed
+//Super simple function, because most of the logic is handled during an event edit.
+$(".container").on("click", "div.saveBtn", function() {
+    saveEvents();
+});
+
 createDay();
