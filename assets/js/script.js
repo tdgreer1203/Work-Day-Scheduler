@@ -19,7 +19,7 @@ function createDay() {
         var rowTime = moment().hours(8).add(i, 'hours').format('hA');
         var row = $("<div>").addClass("row");
         var timeCol = $("<div>").addClass("col-12 col-md-1 hour").text(rowTime);
-        var descriptionCol = $("<div>").addClass("description col-12 col-md-10 past");
+        var descriptionCol = $("<div>").addClass("description col-12 col-md-10");
 
         if(!eventsArray) {
             eventsArray = [];
@@ -50,7 +50,7 @@ $(".container").on("click", "div.description", function(event) {
 $(".container").on("blur", "textarea", function(event) {
     var text = $(this).val().trim();
     var eventTime = $(this).parent().find("div.hour").text();
-    var descriptionArea = $("<div>").addClass("description col-12 col-md-10 past").text(text);
+    var descriptionArea = $("<div>").addClass("description col-12 col-md-10").text(text);
     var position = eventsArray.findIndex(object => {
         return object.time == eventTime;
     });
@@ -67,7 +67,6 @@ $(".container").on("blur", "textarea", function(event) {
 
     saveEvents();
 
-    console.log(eventsArray);
     $(this).replaceWith(descriptionArea);
 });
 
@@ -76,5 +75,11 @@ $(".container").on("blur", "textarea", function(event) {
 $(".container").on("click", "div.saveBtn", function() {
     saveEvents();
 });
+
+setInterval(function() {
+    $("div.description").each(function() {
+        var eventTime = $(this).parent().find("div.hour").text();
+    });
+}, 30000);
 
 createDay();
