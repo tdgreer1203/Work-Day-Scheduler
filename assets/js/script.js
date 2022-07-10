@@ -34,6 +34,7 @@ function createDay() {
         var saveCol = $("<div>").addClass("saveBtn col-12 col-md-1").append("<span class='oi oi-file'></span>");
         row.append(timeCol, descriptionCol, saveCol);
         container.append(row);
+        updateTaskStatus();
     }
 };
 
@@ -68,6 +69,8 @@ $(".container").on("blur", "textarea", function(event) {
     saveEvents();
 
     $(this).replaceWith(descriptionArea);
+
+    updateTaskStatus();
 });
 
 //Call saveEvents function when save button is pressed
@@ -94,7 +97,7 @@ function updateTaskStatus() {
 
 setInterval(function() {
     updateTaskStatus();
-}, (1000 * 60) * 5);
+}, (1000 * 60) * 15);
 
 createDay();
 updateTaskStatus();
